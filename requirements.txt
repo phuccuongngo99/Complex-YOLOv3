@@ -2,7 +2,7 @@ numpy
 torch==1.1
 torchtext==0.4.0
 torchvision==0.3.0
-tensorflow
+tensorflow==1.15.0
 terminaltables
 tqdm
 opencv-python
