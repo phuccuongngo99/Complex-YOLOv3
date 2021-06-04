@@ -293,18 +293,17 @@ def non_max_suppression_rotated_bbox(prediction, conf_thres=0.95, nms_thres=0.4)
         # Perform non-maximum suppression
         keep_boxes = []
         while detections.size(0):
-            #large_overlap = rotated_bbox_iou(detections[0, :6].unsqueeze(0), detections[:, :6], 1.0, False) > nms_thres # not working
             large_overlap = rotated_bbox_iou_polygon(detections[0, :6], detections[:, :6]) > nms_thres
-            # large_overlap = torch.from_numpy(large_overlap.astype('uint8'))
-            large_overlap = torch.from_numpy(large_overlap)
+            large_overlap = torch.from_numpy(large_overlap.astype('uint8'))
             label_match = detections[0, -1] == detections[:, -1]
+            label_match = torch.tensor(label_match,dtype=torch.uint8)
             # Indices of boxes with lower confidence scores, large IOUs and matching labels
-            invalid = np.logical_and(large_overlap, label_match)
+            invalid = large_overlap & label_match
             weights = detections[invalid, 6:7]
             # Merge overlapping bboxes by order of confidence
             detections[0, :6] = (weights * detections[invalid, :6]).sum(0) / weights.sum()
             keep_boxes += [detections[0]]
-            detections = detections[~invalid]
+            detections = detections[1 - invalid]
         if keep_boxes:
             output[image_i] = torch.stack(keep_boxes)
 
