@@ -51,6 +51,81 @@ Now you have to manage dataset directory structure. Place your dataset into `dat
 
 The `train/valid` split of training dataset as well as `sample` and `test` dataset ids are in `data/KITTI/ImageSets` directory. From training set of 7481 images, 6000 images are used for training and remaining 1481 images are used for validation. The mAP results reported in this project are evaluated into this valid set with custom mAP evaluation script with 0.5 iou for each object class. 
 
+
+#### Data Preparation for Custom Dataset
+
+## Raw data
+Follow the same structure data structure above
+```
+└── data/KITTI/object
+       ├── training       
+       |   ├── image_2
+       |   |   ├── 001.png
+       |   |   ├── 002.png
+       |   |   └── 003.png
+       |   ├── calib
+       |   |   ├── 001.txt
+       |   |   ├── 002.txt
+       |   |   └── 003.txt
+       |   ├── label_2
+       |   |   ├── 001.txt
+       |   |   ├── 002.txt
+       |   |   └── 003.txt
+       |   ├── velodyne
+       |   |   ├── 001.bin
+       |   |   ├── 002.bin
+       |   |   └── 003.bin
+       └── testing
+           ├── image_2
+           |   └── 001.png
+           ├── calib
+           |   └── 001.txt
+           └── velodyne
+               └── 001.bin       
+```
+## Label
+Upload your own `valid.txt`, `train.txt` and `test.txt` to have to following structure.
+```
+└── data/KITTI/ImageSets
+       ├── train.txt   
+       ├── valid.txt 
+       ├── test.txt 
+              
+```
+Your .txt file should contains the name of the images file
+For instance, continue with the example in the raw dataset.
+Your `train.txt` could be:
+```
+001
+002
+```
+
+Your `valid.txt` could be:
+```
+003
+```
+
+Your `test.txt` could be:
+```
+001
+```
+
+#### Training on Colab
+## Make your zip datafile
+Zip your `train.txt`, `test.txt`, `valid.txt` into `label.zip`.
+Zip your `training` folder and `testing` folder into `data.zip`.
+
+
+## Training
+If the notebook doesn't work, check in Colab to see if you have the folder
+structure above
+Follow the instruction on this notebook
+
+
+
+
+
+
 #### Verify your download
     $ python check_dataset.py
 
