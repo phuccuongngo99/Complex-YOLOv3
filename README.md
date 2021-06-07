@@ -110,6 +110,16 @@ Your `test.txt` could be:
 001
 ```
 
+#### Class label file
+Make a file named `classes.names`, according to the classes of your dataset. It should be like this
+```
+First Class name
+Second Class name
+...
+Car
+Person
+```
+
 #### Training on Colab
 ## Make your zip datafile
 Zip your `train.txt`, `test.txt`, `valid.txt` into `label.zip`.
@@ -120,7 +130,6 @@ Zip your `training` folder and `testing` folder into `data.zip`.
 If the notebook doesn't work, check in Colab to see if you have the folder
 structure above
 Follow the instruction on this notebook
-
 
 #### Verify your download
     $ python check_dataset.py
