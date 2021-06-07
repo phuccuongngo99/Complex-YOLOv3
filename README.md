@@ -92,7 +92,7 @@ Upload your own `valid.txt`, `train.txt` and `test.txt` to have to following str
        ├── test.txt 
               
 ```
-Your .txt file should contains the name of the images file
+Your `.txt` file should contains the name of the images file
 For instance, continue with the example in the raw dataset.
 Your `train.txt` could be:
 ```
@@ -120,10 +120,6 @@ Zip your `training` folder and `testing` folder into `data.zip`.
 If the notebook doesn't work, check in Colab to see if you have the folder
 structure above
 Follow the instruction on this notebook
-
-
-
-
 
 
 #### Verify your download
