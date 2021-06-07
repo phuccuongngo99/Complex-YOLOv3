@@ -42,11 +42,11 @@ Now you have to manage dataset directory structure. Place your dataset into `dat
        |   ├── image_2 <-- for visualization
        |   ├── calib
        |   ├── label_2
-       |   ├── velodyne
+       |   └── velodyne
        └── testing     <-- 7580 test data
            ├── image_2 <-- for visualization
            ├── calib
-           ├── velodyne           
+           └── velodyne           
 ```
 
 The `train/valid` split of training dataset as well as `sample` and `test` dataset ids are in `data/KITTI/ImageSets` directory. From training set of 7481 images, 6000 images are used for training and remaining 1481 images are used for validation. The mAP results reported in this project are evaluated into this valid set with custom mAP evaluation script with 0.5 iou for each object class. 
