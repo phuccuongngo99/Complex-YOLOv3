@@ -120,19 +120,15 @@ Car
 Person
 ```
 
-#### Training on Colab
-## Make your zip datafile
+## Training on Colab
+#### Make your zip datafile
 Zip your `train.txt`, `test.txt`, `valid.txt` into `label.zip`.
 Zip your `training` folder and `testing` folder into `data.zip`.
 
-
-## Training
+#### Training
 If the notebook doesn't work, check in Colab to see if you have the folder
 structure above
-Follow the instruction on this notebook
-
-#### Verify your download
-    $ python check_dataset.py
+Follow the instruction on this notebook 
 
 ## Train
     $ train.py [-h] [--epochs EPOCHS] [--batch_size BATCH_SIZE]
