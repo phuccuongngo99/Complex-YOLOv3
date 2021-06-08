@@ -7,6 +7,9 @@ Complete but Unofficial PyTorch Implementation of [Complex-YOLO: Real-time 3D Ob
 
 #### Raw data
 Follow the same structure data structure above
+
+***Validation set is splitted from the training set by the code itself, so you don't need to worry about validation set***
+
 ```
 └── data/KITTI/object
        ├── training       
