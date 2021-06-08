@@ -79,10 +79,10 @@ Zip your `training` folder and `testing` folder into `data.zip`.
 #### Training
 If the notebook doesn't work, check in Colab to see if you have the folder
 structure above
-Follow the instruction on this notebook [a relative link](Colab_Complex_YOLOv3_Training.ipynb)
+Follow the instruction on this notebook (Download this notebook and open it in Google Colab) [a relative link](Colab_Complex_YOLOv3_Training.ipynb)
 
 ## Inference/Testing on Colab
-Follow this Colab Notebook here [a relative link](Colab_Complex_YOLOv3_Testing.ipynb)
+Follow this Colab Notebook here (Download this notebook and open it in Google Colab) [a relative link](Colab_Complex_YOLOv3_Testing.ipynb)
 
 
 # Original README.md
