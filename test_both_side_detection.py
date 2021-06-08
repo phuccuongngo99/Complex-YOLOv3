@@ -106,7 +106,7 @@ if __name__ == "__main__":
         img2d = cv2.resize(img2d, (opt.img_size*2, 375))
         vis = np.concatenate((img2d, vis), axis=0)
 
-        cv2.imshow('BEV_DETECTION_RESULT', vis)
+        #cv2.imshow('BEV_DETECTION_RESULT', vis)
         if opt.save_video:
             out.write(vis)
 
