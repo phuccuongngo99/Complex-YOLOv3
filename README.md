@@ -1,57 +1,8 @@
 # Complex-YOLO-V3
 Complete but Unofficial PyTorch Implementation of [Complex-YOLO: Real-time 3D Object Detection on Point Clouds](https://arxiv.org/pdf/1803.06199.pdf) with YoloV3
 
-## Installation
-#### Clone the project and install requirements
-    $ git clone https://github.com/ghimiredhikura/Complex-YOLOv3
-    $ cd Complex-YOLO-V3/
-    $ sudo pip install -r requirements.txt
 
-## Quickstart
-
-#### Download pretrained weights [[yolov3](https://drive.google.com/file/d/1e7PCqeV3tS68KtBIUbX34Uhy81XnsYZV/view), [tiny-yolov3](https://drive.google.com/file/d/19Qvpq2kQyjQ5uhQgi-wcWmSqFy4fcvny/view)]
-    $ cd checkpoints/
-    $ python download_weights.py
-    
-#### Test [without downloading dataset] 
-
-    1. $ python test_detection.py --split=sample --folder=sampledata  
-    2. $ python test_both_side_detection.py --split=sample --folder=sampledata
-
-#### Demo Video [[Click to Play](https://www.youtube.com/watch?v=JzywsbuXFOg)]
-[![complex-yolov3_gif][complex-yolov3_gif]](https://youtu.be/JzywsbuXFOg)
-
-[//]: # (Image References)
-[complex-yolov3_gif]: ./assets/complex-yolov3.gif
-
-## Data Preparation
-
-You can see `sampledata` folder in `data/KITTI/dataset` directory which can be used for testing this project without downloading KITTI dataset. However, if you want to train the model by yourself and check the mAP in validation set just follow the steps below.
-
-#### Download the [3D KITTI detection dataset](http://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d) 
-1. Camera calibration matrices of object data set (16 MB)
-2. Training labels of object data set (5 MB)
-3. Velodyne point clouds (29 GB)
-4. Left color images of object data set (12 GB)
-
-Now you have to manage dataset directory structure. Place your dataset into `data` folder. Please make sure that you have the dataset directory structure as follows. 
-
-```
-└── data/KITTI/object
-       ├── training    <-- 7481 train data
-       |   ├── image_2 <-- for visualization
-       |   ├── calib
-       |   ├── label_2
-       |   └── velodyne
-       └── testing     <-- 7580 test data
-           ├── image_2 <-- for visualization
-           ├── calib
-           └── velodyne           
-```
-
-The `train/valid` split of training dataset as well as `sample` and `test` dataset ids are in `data/KITTI/ImageSets` directory. From training set of 7481 images, 6000 images are used for training and remaining 1481 images are used for validation. The mAP results reported in this project are evaluated into this valid set with custom mAP evaluation script with 0.5 iou for each object class. 
-
-
+# Custom Dataset on Colab
 ## Data Preparation for Custom Dataset
 
 #### Raw data
@@ -128,7 +79,63 @@ Zip your `training` folder and `testing` folder into `data.zip`.
 #### Training
 If the notebook doesn't work, check in Colab to see if you have the folder
 structure above
-Follow the instruction on this notebook 
+Follow the instruction on this notebook [a relative link](Colab_Complex_YOLOv3_Training.ipynb)
+
+## Inference/Testing on Colab
+Follow this Colab Notebook here [a relative link](Colab_Complex_YOLOv3_Testing.ipynb)
+
+
+# Original README.md
+
+## Installation
+#### Clone the project and install requirements
+    $ git clone https://github.com/ghimiredhikura/Complex-YOLOv3
+    $ cd Complex-YOLO-V3/
+    $ sudo pip install -r requirements.txt
+
+## Quickstart
+
+#### Download pretrained weights [[yolov3](https://drive.google.com/file/d/1e7PCqeV3tS68KtBIUbX34Uhy81XnsYZV/view), [tiny-yolov3](https://drive.google.com/file/d/19Qvpq2kQyjQ5uhQgi-wcWmSqFy4fcvny/view)]
+    $ cd checkpoints/
+    $ python download_weights.py
+    
+#### Test [without downloading dataset] 
+
+    1. $ python test_detection.py --split=sample --folder=sampledata  
+    2. $ python test_both_side_detection.py --split=sample --folder=sampledata
+
+#### Demo Video [[Click to Play](https://www.youtube.com/watch?v=JzywsbuXFOg)]
+[![complex-yolov3_gif][complex-yolov3_gif]](https://youtu.be/JzywsbuXFOg)
+
+[//]: # (Image References)
+[complex-yolov3_gif]: ./assets/complex-yolov3.gif
+
+## Data Preparation
+
+You can see `sampledata` folder in `data/KITTI/dataset` directory which can be used for testing this project without downloading KITTI dataset. However, if you want to train the model by yourself and check the mAP in validation set just follow the steps below.
+
+#### Download the [3D KITTI detection dataset](http://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d) 
+1. Camera calibration matrices of object data set (16 MB)
+2. Training labels of object data set (5 MB)
+3. Velodyne point clouds (29 GB)
+4. Left color images of object data set (12 GB)
+
+Now you have to manage dataset directory structure. Place your dataset into `data` folder. Please make sure that you have the dataset directory structure as follows. 
+
+```
+└── data/KITTI/object
+       ├── training    <-- 7481 train data
+       |   ├── image_2 <-- for visualization
+       |   ├── calib
+       |   ├── label_2
+       |   └── velodyne
+       └── testing     <-- 7580 test data
+           ├── image_2 <-- for visualization
+           ├── calib
+           └── velodyne           
+```
+
+The `train/valid` split of training dataset as well as `sample` and `test` dataset ids are in `data/KITTI/ImageSets` directory. From training set of 7481 images, 6000 images are used for training and remaining 1481 images are used for validation. The mAP results reported in this project are evaluated into this valid set with custom mAP evaluation script with 0.5 iou for each object class.
 
 ## Train
     $ train.py [-h] [--epochs EPOCHS] [--batch_size BATCH_SIZE]
@@ -178,9 +185,6 @@ mAP (min. 50 IoU)
 | ----------------------- |:--------|:-----------|:--------|:--------|
 | Complex-YOLO-v3         | 97.89   |82.71       |90.12    |90.24    |
 | Complex-Tiny-YOLO-v3    | 95.91   |49.29       |78.75    |74.65    |
-
-## Inference/Testing on Colab
-Follow this Colab Notebook here
 
 
 #### Results 
