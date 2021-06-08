@@ -18,16 +18,17 @@ import utils.config as cnf
 import utils.mayavi_viewer as mview
 
 def predictions_to_kitti_format(img_detections, calib, img_shape_2d, img_size, RGB_Map=None):
-    predictions = np.zeros([50, 7], dtype=np.float32)
-    count = 0
+    predictions = []
+    
     for detections in img_detections:
         if detections is None:
             continue
         # Rescale boxes to original image
         for x, y, w, l, im, re, conf, cls_conf, cls_pred in detections:
             yaw = np.arctan2(im, re)
-            predictions[count, :] = cls_pred, x/img_size, y/img_size, w/img_size, l/img_size, im, re
-            count += 1
+            predictions.append([cls_pred, x/img_size, y/img_size, w/img_size, l/img_size, im, re])
+
+    predictions = np.asarray(predictions)
 
     predictions = bev_utils.inverse_yolo_target(predictions, cnf.boundary)
     if predictions.shape[0]:
